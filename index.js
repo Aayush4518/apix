@@ -8,7 +8,7 @@ const program= new Command()
 
 program
     .name('Apix')
-    .description('A API testing tool with AI capabilities')
+    .description('A API testing tool with AI capabilities.')
     .version('1.0.0')
     
 program.addCommand(helpCommand)

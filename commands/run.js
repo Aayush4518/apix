@@ -1,15 +1,36 @@
 import axios from "axios";
 // import { program } from "commander";
 import { Command } from "commander";
+import { readData } from "../utils/storage.js";
 
 const runCommand = new Command('run')
     .description("Run API tests based on provided configurations")
-    .argument('<method>', 'HTTP method (GET, POST, PUT, DELETE)')
-    .argument('<url>', 'API endpoint URL')
+    .argument('[method]', 'HTTP method (GET, POST, PUT, DELETE)')
+    .argument('[url]', 'API endpoint URL')
     .usage('<method> <url> [options]')
     .option('-H, --header <header...>', 'Add custom header, e.g. -H "Content-Type: application/json"')
     .option('-d, --data <data...>', 'Add request body (JSON or key=value pairs)')
     .action(async (method, url, options) => {
+        try {
+        if (!url) {
+            const id = method;
+            const storedData = readData();
+
+            const req = storedData.find(r => r.id == id);
+
+            if (!req) {
+                console.error(`No saved request found with id ${id}`);
+                return;
+            }
+
+            method = req.method;
+            url = req.url;
+        }
+    }
+        catch{
+            console.error(`Invalid request id provided: ${method}`)
+            return
+        }
         try {
             let header = {} // Initialize header object
             if (options.header) //checks if header are provided

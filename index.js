@@ -3,6 +3,7 @@
 import {Command} from 'commander'
 import runCommand from './commands/run.js'
 import helpCommand from './commands/help.js'
+import saveCommand from './commands/save.js'
 
 const program= new Command()
 
@@ -13,5 +14,7 @@ program
     
 program.addCommand(helpCommand)
 program.addCommand(runCommand)
+program.addCommand(saveCommand)
+program.addCommand((await import('./commands/list.js')).default) //dynamic import for list command
 
 program.parse()

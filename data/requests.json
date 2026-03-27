@@ -1,0 +1,7 @@
+[
+  {
+    "id": 1,
+    "method": "GET",
+    "url": "https://jsonplaceholder.typicode.com/get"
+  }
+]

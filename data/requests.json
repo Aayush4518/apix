@@ -2,6 +2,11 @@
   {
     "id": 1,
     "method": "GET",
-    "url": "https://jsonplaceholder.typicode.com/get"
+    "url": "https://jsonplaceholder.typicode.com/posts/1"
+  },
+  {
+    "id": 2,
+    "method": "POST",
+    "url": "https://jsonplaceholder.typicode.com/posts"
   }
 ]

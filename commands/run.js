@@ -64,11 +64,20 @@ const runCommand = new Command('run')
                 } else {
                     // Key=value parsing for shell-safe input
                     const obj = {}
-                    const pairs = raw.match(/(?:[^\s"]+|"[^"]*")+/g) // respects quoted values
-                    if (pairs) {
-                        pairs.forEach(item => {
+                    const tokens = raw.match(/(?:[^\s"]+|"[^"]*")+/g) // respects quoted values
+                    if (tokens) {
+                        for (let i = 0; i < tokens.length; i++) {
+                            const item = tokens[i]
+                            if (!item.includes('=')) {
+                                continue
+                            }
+
                             const [key, ...rest] = item.split('=')
                             let value = rest.join('=').trim()
+
+                            if (value === '' && i + 1 < tokens.length && !tokens[i + 1].includes('=')) {
+                                value = tokens[++i]
+                            }
 
                             // Remove surrounding quotes if present
                             if ((value.startsWith('"') && value.endsWith('"')) ||
@@ -76,9 +85,8 @@ const runCommand = new Command('run')
                                 value = value.slice(1, -1)
                             }
 
-                            // Convert numbers automatically
-                            obj[key] = isNaN(value) ? value : Number(value)
-                        })
+                            obj[key] = value === '' ? '' : isNaN(value) ? value : Number(value)
+                        }
                     }
                     data = obj //assign the parsed object to data
                 }

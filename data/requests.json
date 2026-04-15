@@ -1,12 +1,29 @@
 [
   {
-    "id": 1,
-    "method": "GET",
-    "url": "https://jsonplaceholder.typicode.com/posts/1"
+    "id": 2,
+    "method": "PUT",
+    "url": "https://jsonplaceholder.typicode.com/users/1"
   },
   {
-    "id": 2,
+    "id": 3,
     "method": "POST",
-    "url": "https://jsonplaceholder.typicode.com/posts"
+    "url": "https://jsonplaceholder.typicode.com/posts",
+    "header": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "title": "SARE",
+      "body": "ABC",
+      "id": 100
+    }
+  },
+  {
+    "id": 3,
+    "method": "POST",
+    "url": "https://jsonplaceholder.typicode.com/posts",
+    "header": {
+      "Content-Type": "application/json"
+    },
+    "body": {}
   }
 ]

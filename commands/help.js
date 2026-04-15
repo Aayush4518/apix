@@ -20,9 +20,17 @@ Options:
   -h, --help     Display help information
   -V, --version  Display the version number
 Examples:
-  apix run GET https://api.example.com/users -H "Authorization: Bearer token" -d '{"name": "John"}'
+  apix run GET https://api.example.com/users 
+  -H "Authorization: Bearer token" 
+  -d name= "John" title= "Developer" body= "Check" id=123
+
   apix save POST https://api.example.com/users
   apix list
+  apix run 1
+  
+  apix delete 1
+
+  apix edit 2 -m PUT -u https://api.example.com/users/1
 `)
     })
 

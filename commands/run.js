@@ -52,7 +52,7 @@ const parseDataArg = (dataArgs) => {
     for (let i = 0; i < tokens.length; i++) {
         const item = tokens[i];
         if (!item.includes(":")) continue;
-        
+
         const [key, ...rest] = item.split(":");
         let value = rest.join(":").trim();
 
@@ -111,15 +111,18 @@ const runCommand = new Command('run')
 
         const headers = parseHeaders(options.header);
         const data = parseDataArg(options.data);
-        let finalData= data;
-        if(typeof data === 'string') {
-            try {                
+        let finalData = data;
+        if (typeof data === 'string') {
+            try {
                 finalData = JSON.parse(data);
             } catch {
                 finalData = data;
             }
         }
         try {
+            if (!requestUrl.startsWith("http")) {
+                requestUrl = "https://jsonplaceholder.typicode.com" + requestUrl;
+            }
             const response = await axios({
                 method: method.toLowerCase(),
                 url: requestUrl,

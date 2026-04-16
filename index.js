@@ -6,8 +6,10 @@ import helpCommand from './commands/help.js'
 import saveCommand from './commands/save.js'
 import deleteCommand from './commands/delete.js'
 import editCommand from './commands/edit.js'
+import generateCommand from './commands/generate.js'
 
 const program= new Command()
+// console.log(process.env.GEMINI_API_KEY);
 
 program
     .name('Apix')
@@ -19,6 +21,7 @@ program.addCommand(runCommand)
 program.addCommand(saveCommand)
 program.addCommand(deleteCommand)
 program.addCommand(editCommand)
+program.addCommand(generateCommand)
 program.addCommand((await import('./commands/list.js')).default) //dynamic import for list command
 
 program.parse()

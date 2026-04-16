@@ -26,6 +26,26 @@ const parseHeaders = (headerArgs) => {
     return headers;
 };
 
+const normalizeJsonLikeString = (raw) => {
+    let normalized = raw.trim();
+
+    // Quote unquoted keys: {name:...} -> {"name":...}
+    normalized = normalized.replace(/([{,]\s*)([A-Za-z0-9_]+)\s*:/g, '$1"$2":');
+
+    // Convert single-quoted strings to JSON double-quoted strings.
+    normalized = normalized.replace(/'([^']*)'/g, '"$1"');
+
+    // Quote unquoted string values, but leave numbers, booleans, and null untouched.
+    normalized = normalized.replace(/:\s*([A-Za-z_][A-Za-z0-9_-]*)(?=\s*[},])/g, (match, value) => {
+        if (['true', 'false', 'null'].includes(value)) {
+            return `: ${value}`;
+        }
+        return `: "${value}"`;
+    });
+
+    return normalized;
+};
+
 const parseDataArg = (dataArgs) => {
     if (!dataArgs) return undefined;
 
@@ -40,7 +60,12 @@ const parseDataArg = (dataArgs) => {
             try {
                 return JSON.parse(fixed);
             } catch {
-                return raw;
+                try {
+                    const jsonLike = normalizeJsonLikeString(trimmed);
+                    return JSON.parse(jsonLike);
+                } catch {
+                    return raw;
+                }
             }
         }
     }
@@ -129,8 +154,9 @@ const runCommand = new Command('run')
                 headers,
                 data: finalData,
             });
-
+            console.log("✔ Request Successful")
             console.log(`Status: ${response.status}`);
+            console.log(`Time: ${response.headers['request-duration'] || 'N/A'} ms`);
             console.log('Response data:', JSON.stringify(response.data, null, 2));
         } catch (error) {
             if (error.response) {

@@ -41,18 +41,16 @@ apix run GET https://dummyjson.com/users
 ### 🔹 Run a POST request (JSON)
 
 ```bash id="p7c8n1"
-apix run POST https://dummyjson.com/users/add \
-  -H "Content-Type:application/json" \
-  -d '{ "firstName": "Aayush", "lastName": "Singh" }'
+apix run POST https://dummyjson.com/users/add -H "Content-Type:application/json" -d '{ "firstName": "Aayush", "lastName": "Singh" }'
 ```
+Run apix help for more INFO
 
 ---
 
 ### 🔹 Run using key=value format
 
 ```bash id="k9s2v6"
-apix run POST https://dummyjson.com/users/add \
-  -d name="Aayush" role="Developer"
+apix run POST https://dummyjson.com/users/add -d name="Aayush" role="Developer"
 ```
 
 ---
@@ -92,6 +90,20 @@ apix generate "create user api" --save --run
 ```
 
 ---
+
+### Screenshots: 
+
+1)APIX Generate in action
+ <img width="1560" height="672" alt="WhatsApp Image 2026-04-19 at 20 08 44 (2)" src="https://github.com/user-attachments/assets/d295b927-977f-4dd6-9ede-53ca5713897c" />
+
+ 
+2) Apix Run command
+<img width="1503" height="704" alt="WhatsApp Image 2026-04-19 at 20 08 44 (1)" src="https://github.com/user-attachments/assets/f7d76732-8f62-40b8-b7ef-24645c592d0a" />
+
+
+3) More examples
+<img width="1280" height="181" alt="WhatsApp Image 2026-04-19 at 20 08 44" src="https://github.com/user-attachments/assets/0f7e6e26-8f03-429d-92f4-73e776b979dc" />
+
 
 ## 📘 Examples
 
@@ -183,7 +195,7 @@ export GROQ_API_KEY="your_api_key_here"
 
 ---
 
-## 🛣 Roadmap
+## 🛣 Roadmap/Future Development Plan
 
 * 🔗 API chaining
 * 🌍 Environment variables (BASE_URL)
@@ -192,12 +204,6 @@ export GROQ_API_KEY="your_api_key_here"
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome!
-Feel free to open issues or submit PRs.
-
----
 
 ## 📄 License
 

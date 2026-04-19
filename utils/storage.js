@@ -1,13 +1,27 @@
 import fs from 'fs';
+import os from 'os';
+import path from 'path';
 
+const dir = path.join(os.homedir(), '.apix');
+const file = path.join(dir, 'requests.json');
 
-const FILE = './data/requests.json';
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir, { recursive: true });
+}
+
+if (!fs.existsSync(file)) {
+  fs.writeFileSync(file, '[]', 'utf-8');
+}
 
 export const readData = () => {
-    const data = fs.readFileSync(FILE, 'utf-8'); //utf 8 is the encoding format to read the file
+  const data = fs.readFileSync(file, 'utf-8');
+  try {
     return JSON.parse(data);
+  } catch {
+    return [];
+  }
 };
 
 export const writeData = (data) => {
-    fs.writeFileSync(FILE, JSON.stringify(data, null, 2)); //null and 2 are used to format the JSON with indentation for better readability
+  fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf-8');
 };

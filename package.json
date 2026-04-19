@@ -1,18 +1,38 @@
 {
-  "name": "apix",
+  "name": "apix-dev-cli",
   "version": "1.0.0",
+  "description": "AI-powered CLI tool for API testing, generation, and execution from terminal",
   "main": "index.js",
   "type": "module",
   "bin": {
     "apix": "./index.js"
   },
+  "files": [
+    "index.js",
+    "commands",
+    "utils"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No tests yet\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "cli",
+    "api",
+    "testing",
+    "ai",
+    "developer-tools",
+    "postman-alternative"
+  ],
+  "author": "Aayush Singh",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/apix.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "preferGlobal": true,
   "dependencies": {
     "axios": "^1.15.0",
     "commander": "^14.0.3"

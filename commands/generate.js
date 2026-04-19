@@ -21,6 +21,14 @@ const generateCommand = new Command("generate")
   .option('--save', 'Save generated request')
   .option('--run', 'Execute generated request immediately')
   .action(async (prompt, options) => {
+    if (!process.env.GROQ_API_KEY) {
+      console.log("\n❌ Missing GROQ_API_KEY");
+      console.log("👉 Set it using:");
+      console.log('setx GROQ_API_KEY "your_api_key_here" (Windows)');
+      console.log('export GROQ_API_KEY="your_api_key_here" (Mac/Linux)\n');
+      return;
+    }
+
     try {
       const response = await axios.post(
         "https://api.groq.com/openai/v1/chat/completions",
@@ -29,19 +37,16 @@ const generateCommand = new Command("generate")
           messages: [
             {
               role: "user",
-              content: `Convert this into an API request JSON.
+              content: `You MUST return ONLY a valid JSON object. No markdown, no explanation, no extra text.
 
-Prompt: "${prompt}"
+User request: "${prompt}"
 
-Return ONLY JSON:
-Rules:
-- Use FULL correct URL
-- For GET requests, put query parameters in the URL, NOT in body
-- Body should be empty for GET
+Generate a single JSON object for this API request. Use jsonplaceholder.typicode.com for testing.
+
 {
-  "method": "",
-  "url": "",
-  "headers": {},
+  "method": "GET",
+  "url": "https://jsonplaceholder.typicode.com/posts",
+  "headers": {"Content-Type": "application/json"},
   "body": {}
 }`
             }
@@ -57,13 +62,20 @@ Rules:
 
       let text = response.data.choices[0].message.content;
 
-      text = text.replace(/```json|```/g, "").trim();
+      text = text.replace(/```json\n?|```\n?/g, "").trim();
+      
+      // Remove any leading/trailing whitespace and common wrapper text
+      text = text.replace(/^[\s\n]*/, "").replace(/[\s\n]*$/, "");
+      text = text.replace(/^Here is.*?:\s*/i, "").replace(/^Here's.*?:\s*/i, "");
+      
       let parsed;
 
       try {
         parsed = JSON.parse(text);
-      } catch {
+      } catch (parseError) {
         console.error("AI returned invalid JSON");
+        console.error("Raw response:", text.substring(0, 500));
+        console.error("Parse error:", parseError.message);
         return;
       }
       console.log("\nGenerated Request:\n");

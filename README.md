@@ -21,7 +21,7 @@ Apix is a lightweight CLI tool that lets you **run, save, and generate API reque
 ## 📦 Installation
 
 ```bash id="b4m3k2"
-npm install -g apix
+npm install -g apix-dev-cli
 ```
 
 ---

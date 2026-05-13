@@ -5,12 +5,6 @@ Apix is a lightweight CLI tool that lets you **run, save, and generate API reque
 > ⚡ Skip Postman. Stay in your terminal. Move faster.
 
 ---
-{
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Aayush4518/apix.git"
-}
-}
 
 ## ✨ Features
 

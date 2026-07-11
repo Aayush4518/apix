@@ -8,6 +8,13 @@ Apix is a lightweight CLI tool that lets you **run, save, and generate API reque
 # Apix
 npm: ```https://www.npmjs.com/package/apix-dev-cli```
 
+[![npm version](https://img.shields.io/npm/v/apix-dev-cli)](https://www.npmjs.com/package/apix-dev-cli)
+[![npm downloads](https://img.shields.io/npm/dm/apix-dev-cli)](https://www.npmjs.com/package/apix-dev-cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-%3E%3D18-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+[![GitHub stars](https://img.shields.io/github/stars/Aayush4518/apix?style=social)](https://github.com/Aayush4518/apix/stargazers)
+
+AI-powered CLI tool for API testing, request generation, and execution directly from the terminal.
 ---
 
 ## ✨ Features

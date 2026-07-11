@@ -3,11 +3,12 @@
 Apix is a lightweight CLI tool that lets you **run, save, and generate API requests directly from your terminal** — with built-in AI support.
 
 > ⚡ Skip Postman. Stay in your terminal. Move faster.
-# Apix
-
-📦 npm: https://www.npmjs.com/package/apix-dev-cli
 
 
+```md
+[![npm version](https://img.shields.io/npm/v/apix-dev-cli.svg)](https://www.npmjs.com/package/apix-dev-cli)
+
+```
 ---
 
 ## ✨ Features

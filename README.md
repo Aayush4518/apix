@@ -6,7 +6,7 @@ Apix is a lightweight CLI tool that lets you **run, save, and generate API reque
 
 
 ```md
-[![npm version](https://img.shields.io/npm/v/apix-dev-cli.svg)](https://www.npmjs.com/package/apix-dev-cli)
+[![1.0.3](https://img.shields.io/npm/v/apix-dev-cli.svg)](https://www.npmjs.com/package/apix-dev-cli)
 
 ```
 ---

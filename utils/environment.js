@@ -122,3 +122,14 @@ export async function getCurrentEnvironment() {
     const config= await readConfig()
     return config.currentEnvironment
 }
+
+
+
+export async function getCurrentEnvironmentPath(){
+    const current = await getCurrentEnvironment()
+
+    if(!current){
+        throw new Error("No active envrionment")
+    }
+    return getEnvironmentPath(current)
+}

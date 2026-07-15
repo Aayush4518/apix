@@ -4,8 +4,8 @@ const helpCommand = new Command("help")
   .description("Show help for Apix CLI")
   .action(() => {
     console.log(`
-🚀 Apix CLI — API Testing Tool with AI
-=====================================
+🚀 Apix CLI v1.1.0 — API Testing Tool with AI
+============================================
 
 Usage:
   apix <command> [options]
@@ -60,15 +60,31 @@ Usage:
 
 6️⃣ AI generate + save
   apix generate "create user api" --save
+  
+  
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🌍 Environment Commands
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+7️⃣ Create an environment
+  apix env create-env local
+  apix env create-env production
 
+8️⃣ Switch environments
+  apix env use-env production
+  apix env current-env
+
+9️⃣ Environment variables
+  apix var set TOKEN abc123
+  apix var set BASE_URL https://api.example.com
+  apix var list
 ------------------------------------------------
 💡 Tips
 ------------------------------------------------
-• Use JSON format for complex data
+• Use JSON format for complex request bodies
 • For PowerShell, wrap JSON in single quotes
+• Environment variables are stored per environment
+• Switch environments before running production APIs
 • AI-generated URLs may need adjustment
-
-------------------------------------------------
 `);
   });
 

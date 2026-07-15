@@ -17,6 +17,38 @@ npm: ```https://www.npmjs.com/package/apix-dev-cli```
 AI-powered CLI tool for API testing, request generation, and execution directly from the terminal.
 ---
 
+# 🚀 Apix v1.2.0
+Developer Workflow Update
+
+## ✨ New in v1.2.0
+
+### 🌍 Environment Management
+
+Manage multiple environments for different APIs.
+
+```bash
+apix env create-env local
+apix env create-env production
+
+apix env use-env production
+
+apix env list-env
+
+apix env current-env
+
+apix env delete-env production
+
+🔑 Environment Variables
+Store variables separately for each environment.
+
+apix var set TOKEN abc123
+
+apix var get TOKEN
+
+apix var list
+
+apix var delete TOKEN
+
 ## ✨ Features
 
 * ⚡ Run API requests (GET, POST, PUT, DELETE)

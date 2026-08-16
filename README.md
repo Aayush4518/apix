@@ -1,6 +1,6 @@
 # 🚀 Apix - AI-Powered CLI for API Testing
 
-Apix is a lightweight CLI tool that lets you **run, save, and generate API requests directly from your terminal** — with built-in AI support.
+Apix is a lightweight CLI tool that lets you **run, save, and generate API requests directly from your terminal** - with built in AI support.
 
 > ⚡ Skip Postman. Stay in your terminal. Move faster.
 
@@ -111,6 +111,7 @@ apix run 1
 ## 🤖 AI Features (Core Highlight)
 
 ### 🔹 Generate API from natural language
+Would require a groq API key 
 
 ```bash id="m8x5a3"
 apix generate "create login api"

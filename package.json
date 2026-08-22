@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "bin": {
-    "apix": "./index.js"
+    "apix": "index.js"
   },
   "files": [
     "index.js",

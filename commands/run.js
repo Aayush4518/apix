@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Command } from "commander";
 import { readData } from "../utils/storage.js";
+import { executeRequest, formatRequestError } from "../utils/http.js";
 
 const isUrl = (value) => {
     try {
@@ -145,26 +146,15 @@ const runCommand = new Command('run')
             }
         }
         try {
-            if (!requestUrl.startsWith("http")) {
-                requestUrl = "https://jsonplaceholder.typicode.com" + requestUrl;
-            }
-            const response = await axios({
-                method: method.toLowerCase(),
-                url: requestUrl,
-                headers,
-                data: finalData,
-            });
+            const response = await executeRequest({ method, url: requestUrl, headers, body: finalData });
             console.log("✔ Request Successful")
             console.log(`Status: ${response.status}`);
             console.log(`Time: ${response.headers['request-duration'] || 'N/A'} ms`);
             console.log('Response data:', JSON.stringify(response.data, null, 2));
         } catch (error) {
-            if (error.response) {
-                console.error(`Error: ${error.response.status} - ${error.response.statusText}`);
-                console.error('Response data:', JSON.stringify(error.response.data, null, 2));
-            } else {
-                console.error('Error:', error.message);
-            }
+            const details = formatRequestError(error);
+            console.error(`Error: ${details.message}`);
+            if (details.data !== undefined) console.error('Response data:', JSON.stringify(details.data, null, 2));
         }
     });
 

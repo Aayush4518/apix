@@ -17,6 +17,41 @@ npm: ```https://www.npmjs.com/package/apix-dev-cli```
 AI-powered CLI tool for API testing, request generation, and execution directly from the terminal.
 ---
 
+# Apix v1.3.0 (Chaining and Workflows)
+
+## API chains
+
+Create a JSON file named `auth-flow.json`, then save and run it:
+
+```json
+{
+  "steps": [
+    {
+      "name": "Login",
+      "method": "POST",
+      "url": "https://api.example.com/login",
+      "headers": { "Content-Type": "application/json" },
+      "body": { "email": "you@example.com", "password": "secret" },
+      "extract": { "token": "token", "userId": "user.id" }
+    },
+    {
+      "name": "Profile",
+      "method": "GET",
+      "url": "https://api.example.com/users/{{userId}}",
+      "headers": { "Authorization": "Bearer {{token}}" }
+    }
+  ]
+}
+```
+
+```bash
+apix chain save auth-flow
+apix chain run auth-flow
+apix chain list
+```
+
+Use `--file path/to/chain.json` when the definition has a different name. Values extracted with `extract` can be used in later URLs, headers, and bodies as `{{variable}}`. A missing value, failed extraction, or failed request stops the chain and reports the step that failed.
+
 # 🚀 Apix v1.2.0
 Developer Workflow Update
 

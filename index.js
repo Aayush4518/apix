@@ -9,6 +9,7 @@ import editCommand from './commands/edit.js'
 import generateCommand from './commands/generate.js'
 import env from './commands/env.js'
 import variable from './commands/var.js'
+import chainCommand from './commands/chain.js'
 
 const program= new Command()
 // console.log(process.env.GEMINI_API_KEY);
@@ -27,6 +28,7 @@ program.addCommand(editCommand)
 program.addCommand(generateCommand)
 program.addCommand(env)
 program.addCommand(variable)
+program.addCommand(chainCommand)
 program.addCommand((await import('./commands/list.js')).default) //dynamic import for list command
 
 program.parse()

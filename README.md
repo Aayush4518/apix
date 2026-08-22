@@ -21,7 +21,12 @@ AI-powered CLI tool for API testing, request generation, and execution directly 
 
 ## API chains
 
-Create a JSON file named `auth-flow.json`, then save and run it:
+APIX lets you define multiple API requests as a **chain** and execute them sequentially
+
+Each chain is stored as a `.json` file, where every step contains its own request configuration
+
+## Create a chain:
+Create a JSON file such as ```text ```login-flow.json
 
 ```json
 {
@@ -50,12 +55,10 @@ apix chain run auth-flow
 apix chain list
 ```
 
-Use `--file path/to/chain.json` when the definition has a different name. Values extracted with `extract` can be used in later URLs, headers, and bodies as `{{variable}}`. A missing value, failed extraction, or failed request stops the chain and reports the step that failed.
+Use `--file path/to/chain.json` when the definition has a different name. Values extracted with `extract` can be used in later URLs, headers, and bodies as `{{variable}}`. A missing value, failed extraction or failed request stops the chain and reports the step that failed.
 
 # 🚀 Apix v1.2.0
 Developer Workflow Update
-
-## ✨ New in v1.2.0
 
 ### 🌍 Environment Management
 
